@@ -96,7 +96,7 @@ function drawPoints(){
   text("-",550,30);
   stroke(190);
   line(488,11,488,41);
-  line(538,11,538,41)
+  line(538,11,538,41);
 }
 
 function drawStat(){
