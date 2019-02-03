@@ -161,15 +161,29 @@ class tile{
 
       var totalDistance = 0;
 
+      var max = 0;
+      var min=100000000000
+      var avg=0;
+      var distance;
+
       for(x in data){
         var row = data[x];
 
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        totalDistance = totalDistance + sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2));
+        distance = sqrt(pow(abs(pos.x-this.xPos),2)+pow(abs(pos.y-this.yPos),2));
+        totalDistance = totalDistance + distance;
 
+        if(distance>max){
+          max=distance;
+        }
+        if(distance<min){
+          min=distance;
+        }
       }
+
+      avg = totalDistance/7;
 
       this.colorValue=0;
       this.pColor=0;
@@ -181,7 +195,10 @@ class tile{
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        plemColor = plemColor + (( sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2)) /totalDistance)*row[2]);
+        distance = sqrt(pow(abs(pos.x-this.xPos),2)+pow(abs(pos.y-this.yPos),2));
+        if(distance<avg){
+            plemColor = plemColor + (totalDistance/(abs(pos.x-this.xPos)+abs(pos.y-this.yPos))*row[2]);
+        }        
       }
 
       this.pColor=plemColor;
