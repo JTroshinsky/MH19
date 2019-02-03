@@ -169,7 +169,8 @@ class tile{
         totalDistance = totalDistance + (abs(pos.x-this.xPos)+abs(pos.y-this.yPos));
 
       }
-
+      
+      this.colorValue=0;
       var plemColor = 0;
 
       for(x in data){
