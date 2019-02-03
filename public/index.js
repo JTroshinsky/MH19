@@ -259,6 +259,9 @@ function setColors(){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
+      if(col<255){
+        col*=1.2;
+      }
       if(col>255){
         col = 255;
       }
