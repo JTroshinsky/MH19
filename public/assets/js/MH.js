@@ -38,7 +38,7 @@ function setup(){
 
   myMap = mappa.tileMap(options);
   myMap.overlay(myCanvas);
-  myMap.onChange(drawPoints);
+  //myMap.onChange(drawPoints);
 
 }
 
@@ -102,7 +102,7 @@ function drawStat(){
 }
 
 function mouseClicked(){
-  drawStat();
+  //drawStat();
 }
 
 function genMatrix(){
