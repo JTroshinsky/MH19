@@ -20,6 +20,8 @@ var col;
 
 var oppacity;
 
+var thisScore;
+
 var mark;
 
 const mappa = new Mappa('Mapbox', KEY);
@@ -28,7 +30,6 @@ var myMap;
 function preload(){
   tbl= loadStrings('farmData.txt');
   mark = loadImage('/img/mark.png');
-  yy=0;
 }
 
 function setup(){
@@ -57,11 +58,6 @@ function setup(){
   myMap.overlay(myCanvas);
   myMap.onChange(drawPoints);
 }
-
-  yy++;
-  if(yy%10==0){
-    console.log(mouseX+" "+mouseY);
-  }
 
 function drawPoints(){
   clear();
@@ -101,7 +97,7 @@ function drawPoints(){
   }
 
   fill(255);
-  rect(875,10,100,40);
+  rect(880,10,100,35);
   textSize(12);
   fill(0);
   stroke(0);
@@ -147,10 +143,6 @@ function drawStat(){
     text("Score: ",pos.x+2,pos.y-31);
     textSize(30);
     text(row[2],pos.x+4,pos.y-5);
-    //text("Temp: ",pos.x+2,pos.y-20);
-    //text("Temp: ",pos.x+2,pos.y-17);
-    //text("Wind: ",pos.x+2,pos.y-9);
-    //text("Preasure: ",pos.x+2,pos.y-1);
   }
 }
 
@@ -170,6 +162,8 @@ function mouseClicked() {
     }
   }
   drawStat();
+
+  console.log(request(44.801794, -92.940902));
 }
 
 function genMatrix(){
@@ -242,10 +236,8 @@ class tile{
             plemColor = plemColor + (totalDistance/(abs(pos.x-this.xPos)+abs(pos.y-this.yPos))*row[2]);
         }
       }
-
       this.pColor=plemColor;
   }
-
 
   setColor(){
     this.colorValue = col;
@@ -310,4 +302,12 @@ function setColors(){
       row[y].setColor();
     }
   }
+}
+
+function request(lat,lon){
+  let theUrl=`http:farmsim2k19.herokuapp.com/score?lat=${lat}&lon=${lon}`
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
 }
