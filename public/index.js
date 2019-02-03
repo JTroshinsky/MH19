@@ -4,6 +4,10 @@ var data;
 var tbl;
 var plot;
 
+var fData;
+var ftbl
+var loaded;
+
 var test;
 
 var matrix;
@@ -28,9 +32,9 @@ const mappa = new Mappa('Mapbox', KEY);
 var myMap;
 
 function preload(){
-  tbl= loadStrings('farmPoints.txt');
+  tbl= loadStrings('farmData.txt');
   mark = loadImage('/img/mark.png');
-  loadPoints();
+  loaded = 0;
 }
 
 function setup(){
@@ -98,12 +102,12 @@ function drawPoints(){
   }
 
   fill(255);
-  rect(885,10,90,35);
+  rect(890,10,100,35);
   textSize(12);
   fill(0);
   stroke(0);
-  text("+",900,30);
-  text("-",950,30);
+  text("+",910,30);
+  text("-",960,30);
   stroke(190);
   line(888,11,888,41);
   line(938,11,938,41);
@@ -145,26 +149,6 @@ function drawStat(){
     textSize(30);
     text(row[2],pos.x+4,pos.y-5);
   }
-}
-
-function mouseClicked() {
-  if(mouseY>11 && mouseY<41){
-    if(mouseX>488 && mouseX<938){
-      if(oppacity<220){
-        oppacity+=25;
-        drawPoints();
-      }
-    }
-    else if(mouseX>938 && mouseX<990){
-      if(oppacity>25){
-        oppacity-=25;
-        drawPoints();
-      }
-    }
-  }
-  drawStat();
-
-  console.log(request(44.801794, -92.940902));
 }
 
 function genMatrix(){
@@ -313,6 +297,31 @@ function request(lat,lon){
   return xmlHttp.responseText;
 }
 
+function mouseClicked() {
+  if(mouseY>11 && mouseY<41){
+    if(mouseX>488 && mouseX<938){
+      if(oppacity<220){
+        oppacity+=25;
+        drawPoints();
+      }
+    }
+    else if(mouseX>938 && mouseX<990){
+      if(oppacity>25){
+        oppacity-=25;
+        drawPoints();
+      }
+    }
+  }
+  drawStat();
+
+  if(loaded<1){
+    loadPoints();
+  }
+}
+
 function loadPoints(){
-    
+  var return = request(44.801794, -92.940902)
+  console.log(return);
+
+  loaded = 1;
 }
