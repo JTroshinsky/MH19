@@ -19,8 +19,16 @@ app.get('/score', function(req, res) {
     };
     let pyshell = new python.PythonShell('main.py', options);
 
+    res.setHeader('content-type', 'text/plain');  
+
+    send_message = ""
     pyshell.on('message', function (message) {
-      res.end(message);
+      send_message = send_message + message + '\n';
+    });
+
+    pyshell.end(function (err,code,signal) {
+        if (err) throw err;
+        res.send(send_message);
     });
 });
 
