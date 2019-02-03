@@ -11,8 +11,6 @@ var matY;
 var origin = new Array(2);
 var dim = new Array(2);
 
-var colorValues(7);
-var totalMatrixDist;
 var totalColor;
 var colorVal;
 
