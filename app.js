@@ -1,22 +1,14 @@
-/*//Static resources
-app.use(express.static(path.join(__dirname, '/public')));
+const http = require('http');
 
-//GET method route
-app.get('/', function(req, res) {
-	res.redirect('/paint');
-});
-app.get('/paint', function(req, res) {
-	res.sendFile(path.join(__dirname, '/public/paint/paint.html'));
-});
-app.get('/countdown', function(req, res) {
-	res.sendFile(path.join(__dirname, '/public/countdown/countdown.html'));
-});*/
+const hostname = '127.0.0.1';
+const port = 3000;
 
-//Launch server
-var port = process.env.PORT || 3000;
-app.listen(port, function() {
-	console.log('Server listening on port ' + port);
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
 });
 
-//Launch websocket server
-var paintServer = require('./paint-server.js')(app);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
