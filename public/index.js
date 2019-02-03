@@ -84,7 +84,7 @@ function drawPoints(){
     }
   }
   const pos3 = myMap.latLngToPixel(origin[0], origin[1]);
-  rect(pos3.x,pos3.y);
+  rect(pos3.x,pos3.y,50,50);
 }
 
 function drawStat(){
