@@ -78,13 +78,11 @@ function drawPoints(){
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      console.log(row[y].color);
+      console.log(row[y].colorValue);
       fill(150);
       rect(row[y].xPos,row[y].yPos,20,20);
     }
   }
-  const pos3 = myMap.latLngToPixel(origin[0], origin[1]);
-  rect(pos3.x,pos3.y,50,50);
 }
 
 function drawStat(){
