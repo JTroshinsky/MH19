@@ -41,14 +41,14 @@ function setup(){
   dim[1] = abs(-92.944163-(-92.931893));
 
 
-  dLat = origin[0]-(dim[0]/20);
-  dLong = origin[1]+(dim[1]/40);
+  var dLat = origin[0]-(dim[0]/20);
+  var dLong = origin[1]+(dim[1]/40);
 
-  const pos = myMap.latLngToPixel(dLat, dLong);
-  const pos2 = myMap.latLngToPixel(origin[0], origin[1]);
+  const posit = myMap.latLngToPixel(dLat, dLong);
+  const posit2 = myMap.latLngToPixel(origin[0], origin[1]);
 
-  tileDim[0] = pos.x-pos2.x;
-  tileDim[1] = pos.y-pos2.y;
+  tileDim[0] = posit.x-posit2.x;
+  tileDim[1] = posit.y-posit2.y;
 
   const options = {
     lat: 44.797520,
