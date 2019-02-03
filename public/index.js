@@ -201,11 +201,6 @@ class tile{
         }
       }
 
-      plemColor*=1.5;
-      if(plemColor>255){
-        plemColor=255;
-      }
-
       this.pColor=plemColor;
   }
 
@@ -216,15 +211,24 @@ class tile{
 }
 
 function setColors(){
-  var max= -1000;
+  var max=new Array(10);
   var min= 1000000000000000;
   var tempColor=0;
+
+  for(z in max){
+    max[z]=0;
+  }
+
+  var found=0;
 
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      if(row[y].pColor>max){
-        max = row[y].pColor;
+      for(z in max){
+        if(row[y].pColor>max[z]&&found<1){
+          max [z]= row[y].pColor;
+          found = 1;
+        }
       }
       if(row[y].pColor<min){
         min = row[y].pColor;
@@ -232,10 +236,32 @@ function setColors(){
     }
   }
 
+  var maxVal=0;
+  found = 0;
+
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      col=row[y].pColor*(255/max);
+      if(row[y].pColor>maxVal){
+        for(z in max){
+          if(row[y].pColor>=max[x]){
+            found=1;
+          }
+        }
+        if(found<1){
+          maxVal = row[y].pColor
+        }
+      }
+    }
+  }
+
+  for (var x = 0; x<matrix.length;x++){
+    var row = matrix[x];
+    for(var y= 0; y<row.length; y++){
+      col=row[y].pColor*(255/maxVal);
+      if(col>255){
+        col = 255;
+      }
       row[y].setColor();
     }
   }
