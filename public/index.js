@@ -13,6 +13,7 @@ var dim = new Array(2);
 
 var totalColor;
 var colorVal;
+var col;
 
 var step;
 
@@ -184,7 +185,7 @@ class tile{
   }
 
 
-  setColor(col){
+  setColor(){
     this.colorValue = col;
   }
 }
@@ -209,7 +210,8 @@ function setColors(){
   for (var x = 0; x<matrix.lenght;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      row[y].setColor(row[y].plemColor*(255/max));
+      col=row[y].plemColor*(255/max);
+      row[y].setColor();
     }
   }
 }
