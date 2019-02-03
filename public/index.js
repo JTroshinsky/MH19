@@ -317,11 +317,9 @@ function mouseClicked() {
 
 function loadPoints(){
   var returns = request(44.801794, -92.940902)
-  console.log(returns);
+  //console.log(returns);
 
-
-
-  document.getElementById("message-div").value = "Yeeet";
+  document.getElementById("message").innerHTML = returns;
 
   loaded = 1;
 }
