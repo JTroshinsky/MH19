@@ -79,12 +79,10 @@ function drawPoints(){
     row = matrix[x];
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      fill(row[y].colorValue);
-      rect(xPos,yPos,dim[0],dim[1]);
+      fill(150);
+      rect(xPos,yPos,10,10);
     }
   }
-
-
 }
 
 function drawStat(){
