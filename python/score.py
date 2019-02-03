@@ -118,7 +118,7 @@ def calc_dT(temp, humidity, pressure):
             tLower = wetGuess
 
     dT = temp - wetGuess
-    print(dT)
+    #print(dT)
     return dT
 
 # will take in a value normalize it from 0-1

@@ -32,10 +32,8 @@ def main():
 
     box = score.score(testfarm, senone.point, senone)
 
-    print(score)
+    #print(score)
     print(score.responsetext(box))
 
 if __name__ == '__main__':
     main()
-
-main()
