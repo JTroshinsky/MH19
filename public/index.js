@@ -80,7 +80,7 @@ function drawPoints(){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       tint(255, 127);
-      fill(row[y].colorValue);
+      fill(row[y].colorValue,50);
       rect(row[y].xPos,row[y].yPos,20,20);
     }
   }
@@ -161,15 +161,29 @@ class tile{
 
       var totalDistance = 0;
 
+      var max = 0;
+      var min=100000000000
+      var avg=0;
+      var distance;
+
       for(x in data){
         var row = data[x];
 
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        totalDistance = totalDistance + sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2));
+        distance = sqrt(pow(abs(pos.x-this.xPos),2)+pow(abs(pos.y-this.yPos),2));
+        totalDistance = totalDistance + distance;
 
+        if(distance>max){
+          max=distance;
+        }
+        if(distance<min){
+          min=distance;
+        }
       }
+
+      avg = totalDistance/7;
 
       this.colorValue=0;
       this.pColor=0;
@@ -181,7 +195,10 @@ class tile{
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        plemColor = plemColor + (( sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2)) /totalDistance)*row[2]);
+        distance = sqrt(pow(abs(pos.x-this.xPos),2)+pow(abs(pos.y-this.yPos),2));
+        if(distance<avg){
+            plemColor = plemColor + (totalDistance/(abs(pos.x-this.xPos)+abs(pos.y-this.yPos))*row[2]);
+        }
       }
 
       this.pColor=plemColor;
@@ -194,15 +211,24 @@ class tile{
 }
 
 function setColors(){
-  var max= -1000;
+  var max=new Array(10);
   var min= 1000000000000000;
   var tempColor=0;
+
+  for(z in max){
+    max[z]=0;
+  }
+
+  var found=0;
 
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      if(row[y].pColor>max){
-        max = row[y].pColor;
+      for(z in max){
+        if(row[y].pColor>max[z]&&found<1){
+          max [z]= row[y].pColor;
+          found = 1;
+        }
       }
       if(row[y].pColor<min){
         min = row[y].pColor;
@@ -210,10 +236,35 @@ function setColors(){
     }
   }
 
+  var maxVal=0;
+  found = 0;
+
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      col=row[y].pColor*(255/max);
+      if(row[y].pColor>maxVal){
+        for(z in max){
+          if(row[y].pColor>=max[x]){
+            found=1;
+          }
+        }
+        if(found<1){
+          maxVal = row[y].pColor
+        }
+      }
+    }
+  }
+
+  for (var x = 0; x<matrix.length;x++){
+    var row = matrix[x];
+    for(var y= 0; y<row.length; y++){
+      col=row[y].pColor*(255/maxVal);
+      if(col<255){
+        col*=1.2;
+      }
+      if(col>255){
+        col = 255;
+      }
       row[y].setColor();
     }
   }
