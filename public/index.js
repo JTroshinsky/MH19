@@ -142,7 +142,7 @@ function genMatrix(){
   setColors();
 }
 
-class tile(){
+class tile{
   constructor(){
       this.x = matX;
       this.y = matY;
