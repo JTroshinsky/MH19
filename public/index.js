@@ -30,7 +30,7 @@ var myMap;
 function preload(){
   tbl= loadStrings('farmPoints.txt');
   mark = loadImage('/img/mark.png');
-
+  loadPoints();
 }
 
 function setup(){
@@ -41,16 +41,6 @@ function setup(){
   for(x in tbl){
     data[x] = splitTokens(tbl[x], ',');
   }
-
-
-  test = loadStrings(request(44.801794, -92.940902));
-  
-  var points = new Array(test.length);
-  for(x in test){
-    points[x] = splitTokens(test[x], ',');
-  }
-
-  console.log(points[0]);
 
   origin[0] = 44.803748;
   origin[1] = -92.944163;
@@ -321,4 +311,12 @@ function request(lat,lon){
   xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
   xmlHttp.send( null );
   return xmlHttp.responseText;
+}
+
+function loadPoints(){
+    test = loadStrings(request(44.801794, -92.940902));
+
+
+
+    console.log(test);
 }
