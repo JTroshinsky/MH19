@@ -112,7 +112,7 @@ function genMatrix(){
     var row = matrix[x];
     for(var y=0; y<row.length; y++){
       matY = y;
-      let row[x] = new tile(x,y);
+      //let row[x] = new tile(x,y);
     }
   }
 
