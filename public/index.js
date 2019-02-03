@@ -38,7 +38,7 @@ function setup(){
   origin[0] = 44.803748;
   origin[1] = -92.944163;
   dim[0] = (44.803748-44.790315);
-  dim[1] = (-92.944163+(-92.931893));
+  dim[1] = abs(-92.944163-(-92.931893));
 
   step=0;
 
@@ -152,7 +152,7 @@ class tile{
       this.y = matY;
 
       this.lat = origin[0]+(dim[0]/20*matX);
-      this.long = origin[1]-(dim[1]/40*matY);
+      this.long = origin[1]+(dim[1]/40*matY);
 
       const pos = myMap.latLngToPixel(this.lat, this.long);
 
