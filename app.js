@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var childProcess = require('child_process');
+var python = require('python-shell');
 
 //Static resources
 app.use(express.static(path.join(__dirname, '/public')));
@@ -12,8 +12,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/score', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(childProcess.execSync('python3 python/main.py ' + req.query.lat + ' ' + req.query.lon));
+    let options = {
+        pythonOptions: ['-u'], // get print results in real-time
+        scriptPath: 'python/',
+        args: [req.query.lat, req.query.lon]
+    };
+    let pyshell = new python.PythonShell('main.py', options);
+
+    pyshell.on('message', function (message) {
+      res.end(message);
+    });
 });
 
 //Launch server
