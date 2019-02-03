@@ -305,7 +305,7 @@ function setColors(){
 }
 
 function request(lat,lon){
-  let theUrl=`http:farmsim2k19.herokuapp.com/score?lat=${lat}&lon=${lon}`
+  let theUrl=`https://farmsim2k19.herokuapp.com/score?lat=${lat}&lon=${lon}`
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
   xmlHttp.send( null );
