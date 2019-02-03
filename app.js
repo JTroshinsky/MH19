@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 
 app.get('/score', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
-    res.end(childProcess.execSync('python3 test.py ' + req.query.lat + ' ' + req.query.lon));
+    res.end(childProcess.execSync('python3 main.py ' + req.query.lat + ' ' + req.query.lon));
 });
 
 //Launch server
