@@ -31,18 +31,10 @@ const drawData = () => {
   // Clear the canvas
   //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-<<<<<<< HEAD
-  /*meteorites.forEach((e) => {
-    //const mass = convertRange(e.size, [558, 60000000], [2, 15]);
-    const pos = myMap.latLngToPixel(e.lat, e.lng);
-    circle(pos.x, pos.y, 10);
-  });*/
-=======
-  for(int e = 0; e<meteorites.length; e++){
+  for(let e = 0; e<meteorites.length; e++){
     const pos = myMap.latLngToPixel(e.lat, e.lng);
     circle(pos.x, pos.y, 10);
   }
->>>>>>> 05dc3c2ab7c0b798f5e49aebc93f5583fdf53d8c
 };
 
 // Load the data using d3.js
