@@ -123,6 +123,4 @@ class tile(){
     this.x = matX;
     this.y = matY;
   }
-
-
 }
