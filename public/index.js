@@ -72,15 +72,18 @@ function drawPoints(){
     }
   }
 
+  genMatrix();
+
+
   for (var x = 0; x<matrix.lenght;x++){
-    matrix[x] = new Array(40);
-    matX = x;
+    row = matrix[x];
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      matY = y;
-      row[y] = new tile();
-    }
+      fill(row[y].colorValue);
+      rect(xPos,yPos,dim[0],dim[1]);
   }
+
+
 
 }
 
