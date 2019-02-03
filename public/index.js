@@ -4,6 +4,8 @@ var data;
 var tbl;
 var plot;
 
+var yy;
+
 var matrix;
 var matX;
 var matY;
@@ -26,6 +28,7 @@ var myMap;
 function preload(){
   tbl= loadStrings('farmData.txt');
   mark = loadImage('/img/mark.png');
+  yy=0;
 }
 
 function setup(){
@@ -54,6 +57,11 @@ function setup(){
   myMap.overlay(myCanvas);
   myMap.onChange(drawPoints);
 }
+
+  yy++;
+  if(yy%10==0){
+    console.log(mouseX+" "+mouseY);
+  }
 
 function drawPoints(){
   clear();
@@ -133,7 +141,7 @@ function drawStat(){
     textSize(15);
     text("Score: ",pos.x+2,pos.y-33);
     textSize(30);
-    text(Srow[2],pos.x+2,pos.y-27);
+    text(row[2],pos.x+2,pos.y-27);
     //text("Temp: ",pos.x+2,pos.y-20);
     //text("Temp: ",pos.x+2,pos.y-17);
     //text("Wind: ",pos.x+2,pos.y-9);
