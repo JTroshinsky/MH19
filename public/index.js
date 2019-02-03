@@ -154,13 +154,13 @@ function drawStat(){
 
 function mouseClicked() {
   if(mouseY>11 && mouseY<41){
-    if(mouseX>488 && mouseX<538){
+    if(mouseX>488 && mouseX<938){
       if(oppacity<220){
         oppacity+=25;
         drawPoints
       }
     }
-    else if(mouseX>538 && mouseX<590){
+    else if(mouseX>938 && mouseX<990){
       if(oppacity>25){
         oppacity-=25;
         drawPoints
