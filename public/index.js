@@ -10,12 +10,11 @@ var matY;
 
 var origin = new Array(2);
 var dim = new Array(2);
+var tileDim = new Array(2);
 
 var totalColor;
 var colorVal;
 var col;
-
-var step;
 
 var mark;
 
@@ -41,7 +40,15 @@ function setup(){
   dim[0] = (44.803748-44.790315);
   dim[1] = abs(-92.944163-(-92.931893));
 
-  step=0;
+
+  dLat = origin[0]-(dim[0]/20);
+  dLong = origin[1]+(dim[1]/40);
+
+  const pos = myMap.latLngToPixel(dLat, dLong);
+  const pos2 = myMap.latLngToPixel(origin[0], origin[1]);
+
+  tileDim[0] = pos.x-pos2.x;
+  tileDim[1] = pos.y-pos2.y;
 
   const options = {
     lat: 44.797520,
@@ -80,7 +87,7 @@ function drawPoints(){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       tint(255, 127);
-      fill(row[y].colorValue,50);
+      fill(row[y].colorValue,80);
       rect(row[y].xPos,row[y].yPos,20,20);
     }
   }
