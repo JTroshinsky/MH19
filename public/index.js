@@ -101,8 +101,10 @@ function drawPoints(){
   }
 
   fill(255);
-  rect(850,50,100,50);
+  rect(900,20,100,40);
   textSize(12);
+  fill(0);
+  stroke(0);
   text("+",900,30);
   text("-",950,30);
   stroke(190);
@@ -157,13 +159,13 @@ function mouseClicked() {
     if(mouseX>488 && mouseX<938){
       if(oppacity<220){
         oppacity+=25;
-        drawPoints
+        drawPoints();
       }
     }
     else if(mouseX>938 && mouseX<990){
       if(oppacity>25){
         oppacity-=25;
-        drawPoints
+        drawPoints();
       }
     }
   }
