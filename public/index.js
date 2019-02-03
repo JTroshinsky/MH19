@@ -320,8 +320,8 @@ function mouseClicked() {
 }
 
 function loadPoints(){
-  var return = request(44.801794, -92.940902)
-  console.log(return);
+  var returns = request(44.801794, -92.940902)
+  console.log(returns);
 
   loaded = 1;
 }
