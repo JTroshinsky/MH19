@@ -154,7 +154,7 @@ class tile{
       this.lat = origin[0]+(dim[0]/20*matX)
       this.long = origin[1]+(dim[1]/40*matY)
 
-      const pos = myMap.latLngToPixel(latitude, longitude);
+      const pos = myMap.latLngToPixel(this.lat, this.long);
 
       this.xPos = pos.x;
       this.yPos = pos.y;
