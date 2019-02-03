@@ -4,7 +4,7 @@ var data;
 var tbl;
 var plot;
 
-var yy;
+var test;
 
 var matrix;
 var matX;
@@ -28,8 +28,9 @@ const mappa = new Mappa('Mapbox', KEY);
 var myMap;
 
 function preload(){
-  tbl= loadStrings('farmData.txt');
+  tbl= loadStrings('farmPoints.txt');
   mark = loadImage('/img/mark.png');
+  test = loadStrings(request(44.801794, -92.940902));
 }
 
 function setup(){
@@ -40,6 +41,13 @@ function setup(){
   for(x in tbl){
     data[x] = splitTokens(tbl[x], ',');
   }
+
+  var points = new Array(test.length);
+  for(x in test){
+    points[x] = splitTokens(test[x], ',');
+  }
+
+  console.log(points[0]);
 
   origin[0] = 44.803748;
   origin[1] = -92.944163;
@@ -97,7 +105,7 @@ function drawPoints(){
   }
 
   fill(255);
-  rect(880,10,100,35);
+  rect(885,10,90,35);
   textSize(12);
   fill(0);
   stroke(0);
