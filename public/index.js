@@ -15,41 +15,6 @@ const options = {
   style: 'mapbox://styles/mapbox/traffic-night-v2',
   pitch: 50,
 };
-
 const myMap = mappa.tileMap(options);
 
-// Make a circle
-const circle = (x, y, s) => {
-  ctx.beginPath();
-  ctx.arc(x, y, s, 0, 2 * Math.PI);
-  ctx.stroke();
-  ctx.fillStyle = "#00ff1f";
-  ctx.fill();
-};
-
-
-// Draw the meteorites
-const drawData = () => {
-  // Clear the canvas
-  //ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for(let e = 0; e<meteorites.length; e++){
-    const pos = myMap.latLngToPixel(e.lat, e.lng);
-    circle(pos.x, pos.y, 10);
-  }
-};
-
-// Load the data using d3.js
-d3.csv("farmData.txt", d => {
-  return {
-    lat: Number(d.reclat),
-    lng: Number(d.reclong),
-    size: Number(d['score']),
-  }
-}, data => {
-  meteorites = data;
-  drawData();
-});
-
 myMap.overlay(canvas);
-myMap.onChange(drawData);
