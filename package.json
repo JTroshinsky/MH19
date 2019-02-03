@@ -1,0 +1,9 @@
+{
+  "name": "node-js-getting-started",
+  "version": "0.1.0",
+  "engines": {
+    "node": "8.11.1"
+  },
+  "dependencies": {
+  }
+}
