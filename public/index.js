@@ -31,11 +31,10 @@ const drawData = () => {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  meteorites.forEach((e) => {
-    //const mass = convertRange(e.size, [558, 60000000], [2, 15]);
+  for(int e = 0; e<meteorites.length; e++){
     const pos = myMap.latLngToPixel(e.lat, e.lng);
     circle(pos.x, pos.y, 10);
-  });
+  }
 };
 
 // Load the data using d3.js
