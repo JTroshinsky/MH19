@@ -93,7 +93,7 @@ function drawPoints(){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       fill(row[y].colorValue,oppacity);
-      rect(row[y].xPos,row[y].yPos,tileDim[0],tileDim[1]);
+      rect(row[y].xPos,row[y].yPos,tileDim[0]-2,tileDim[1]-2);
     }
   }
 
