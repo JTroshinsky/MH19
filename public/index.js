@@ -16,6 +16,8 @@ var totalColor;
 var colorVal;
 var col;
 
+var oppacity;
+
 var mark;
 
 const mappa = new Mappa('Mapbox', KEY);
@@ -39,16 +41,7 @@ function setup(){
   origin[1] = -92.944163;
   dim[0] = (44.803748-44.790315);
   dim[1] = abs(-92.944163-(-92.931893));
-
-
-  var dLat = origin[0]-(dim[0]/20);
-  var dLong = origin[1]+(dim[1]/40);
-
-  const posit = myMap.latLngToPixel(dLat, dLong);
-  const posit2 = myMap.latLngToPixel(origin[0], origin[1]);
-
-  tileDim[0] = posit.x-posit2.x;
-  tileDim[1] = posit.y-posit2.y;
+  oppacity = 120;
 
   const options = {
     lat: 44.797520,
@@ -82,15 +75,28 @@ function drawPoints(){
 
   genMatrix();
 
-  //drawHeatMap();
+  var dLat = origin[0]-(dim[0]/20);
+  var dLong = origin[1]+(dim[1]/40);
+
+  const posit = myMap.latLngToPixel(dLat, dLong);
+  const posit2 = myMap.latLngToPixel(origin[0], origin[1]);
+
+  tileDim[0] = posit.x-posit2.x;
+  tileDim[1] = posit.y-posit2.y;
+
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      tint(255, 127);
-      fill(row[y].colorValue,80);
-      rect(row[y].xPos,row[y].yPos,20,20);
+      fill(row[y].colorValue,oppacity);
+      rect(row[y].xPos,row[y].yPos,tileDim[0],tileDim[1]);
     }
   }
+  textSize(12);
+  text("+",500,30);
+  text("-",550,30);
+  stroke(190);
+  line(488,11,488,41);
+  line(538,11,538,41);
 }
 
 function drawStat(){
@@ -124,16 +130,29 @@ function drawStat(){
     const pos = myMap.latLngToPixel(latitude, longitude);
     rect(pos.x,pos.y-43,80,40);
     fill(0);
-    textSize(10);
+    textSize(15);
     text("Score: "+row[2],pos.x+2,pos.y-33);
-    text("Temp: ",pos.x+2,pos.y-25);
-    text("Temp: ",pos.x+2,pos.y-17);
-    text("Wind: ",pos.x+2,pos.y-9);
-    text("Preasure: ",pos.x+2,pos.y-1);
+    textSize(30);
+    text("Temp: ",pos.x+2,pos.y-20);
+    //text("Temp: ",pos.x+2,pos.y-17);
+    //text("Wind: ",pos.x+2,pos.y-9);
+    //text("Preasure: ",pos.x+2,pos.y-1);
   }
 }
 
 function mouseClicked() {
+  if(mouseY>11 && mouseY<41){
+    if(mouseX>488 && mouseX<538){
+      if(oppacity<220){
+        oppacity+=25;
+      }
+    }
+    else if(mouseX>538 && mouseX<590){
+      if(oppacity>25){
+        oppacity-=25;
+      }
+    }
+  }
   drawStat();
 }
 
@@ -267,7 +286,7 @@ function setColors(){
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
       if(col<255){
-        col*=1.2;
+        col*=1.4;
       }
       if(col>255){
         col = 255;
