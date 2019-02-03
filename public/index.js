@@ -84,8 +84,8 @@ function drawPoints(){
   for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      tint(255, 127);
-      fill(row[y].colorValue,80);
+      //tint(255, 127);
+      fill(row[y].colorValue,100);
       rect(row[y].xPos,row[y].yPos,tileDim[0],tileDim[1]);
     }
   }
@@ -265,7 +265,7 @@ function setColors(){
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
       if(col<255){
-        col*=1.2;
+        col*=1.4;
       }
       if(col>255){
         col = 255;
