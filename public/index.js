@@ -5,6 +5,8 @@ const mappa = new Mappa('MapboxGL', key);
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+let meteorites = [];
+
 // Options for map
 const options = {
   lat: 44.797520,
