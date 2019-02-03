@@ -132,7 +132,7 @@ function mouseClicked() {
 }
 
 function genMatrix(){
-  for (var x = 0; x<matrix.lenght;x++){
+  for (var x = 0; x<matrix.length;x++){
     matrix[x] = new Array(40);
     matX = x;
     var row = matrix[x];
