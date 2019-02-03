@@ -101,7 +101,7 @@ function drawPoints(){
   }
 
   fill(255);
-  rect(900,20,100,40);
+  rect(875,10,100,40);
   textSize(12);
   fill(0);
   stroke(0);
@@ -146,7 +146,7 @@ function drawStat(){
     textSize(15);
     text("Score: ",pos.x+2,pos.y-31);
     textSize(30);
-    text(row[2],pos.x+2,pos.y-20);
+    text(row[2],pos.x+4,pos.y-5);
     //text("Temp: ",pos.x+2,pos.y-20);
     //text("Temp: ",pos.x+2,pos.y-17);
     //text("Wind: ",pos.x+2,pos.y-9);
