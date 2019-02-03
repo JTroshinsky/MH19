@@ -30,7 +30,7 @@
             }
 
             #tractor-img {
-                position:relative;
+                position: absolute;
                 left: 50%;
                 top: -80px;
                 transform: translateX(-50%);
@@ -39,14 +39,12 @@
 	</head>
 	<body>
         <img src="img/farm.jpg" id="background-img"></img>
-        <div id="canvas-div">
-            <img src="img/trac.png" id="tractor-img"></img>
-        </div>
+        <img src="img/trac.png" id="tractor-img"></img>
+        <div id="canvas-div"></div>
 	</body>
 
     <script src="d3.js"></script>
     <script src="p5.js"></script>
     <script src="mappa.js"></script>
-    <script src="index.js"></script>
-		
+    <script src="index.js"></script>	
 </html>
