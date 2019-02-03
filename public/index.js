@@ -131,9 +131,10 @@ function drawStat(){
     rect(pos.x,pos.y-43,80,40);
     fill(0);
     textSize(15);
-    text("Score: "+row[2],pos.x+2,pos.y-33);
+    text("Score: ",pos.x+2,pos.y-33);
     textSize(30);
-    text("Temp: ",pos.x+2,pos.y-20);
+    text(Srow[2],pos.x+2,pos.y-27);
+    //text("Temp: ",pos.x+2,pos.y-20);
     //text("Temp: ",pos.x+2,pos.y-17);
     //text("Wind: ",pos.x+2,pos.y-9);
     //text("Preasure: ",pos.x+2,pos.y-1);
@@ -145,11 +146,13 @@ function mouseClicked() {
     if(mouseX>488 && mouseX<538){
       if(oppacity<220){
         oppacity+=25;
+        drawPoints
       }
     }
     else if(mouseX>538 && mouseX<590){
       if(oppacity>25){
         oppacity-=25;
+        drawPoints
       }
     }
   }
