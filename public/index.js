@@ -29,13 +29,13 @@ const circle = (x, y, s) => {
 // Draw the meteorites
 const drawData = () => {
   // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  meteorites.forEach((e) => {
+  /*meteorites.forEach((e) => {
     //const mass = convertRange(e.size, [558, 60000000], [2, 15]);
     const pos = myMap.latLngToPixel(e.lat, e.lng);
     circle(pos.x, pos.y, 10);
-  });
+  });*/
 };
 
 // Load the data using d3.js
