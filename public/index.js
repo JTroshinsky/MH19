@@ -144,6 +144,19 @@ function drawStat(){
     text("Score: ",pos.x+2,pos.y-31);
     textSize(30);
     text(row[2],pos.x+4,pos.y-5);
+
+    var pointLoc = data[index];
+
+    var returns = request(pointLoc[0], pointLoc[1])
+    console.log(returns);
+    ftbl= loadStrings('returns');
+    fData = new Array(ftbl.length);
+    for(x in ftbl){
+      fData[x] = splitTokens(ftbl[x], ' ');
+    }
+
+    document.getElementById("message").innerHTML = returns;
+
   }
 }
 
@@ -310,12 +323,11 @@ function mouseClicked() {
   }
   drawStat();
 
-  if(loaded<1){
-    loadPoints();
-  }
+  //loadPoints();
 }
 
 function loadPoints(){
+
   var returns = request(44.801794, -92.940902)
   console.log(returns);
   ftbl= loadStrings('returns');
