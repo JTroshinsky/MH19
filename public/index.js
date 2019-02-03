@@ -197,7 +197,7 @@ function setColors(){
   var min= 1000000000000000;
   var tempColor=0;
 
-  for (var x = 0; x<matrix.lenght;x++){
+  for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       if(row[y].pColor>max){
@@ -209,7 +209,7 @@ function setColors(){
     }
   }
 
-  for (var x = 0; x<matrix.lenght;x++){
+  for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/max);
