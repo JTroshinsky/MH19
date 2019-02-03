@@ -99,12 +99,15 @@ function drawPoints(){
       rect(row[y].xPos,row[y].yPos,tileDim[0],tileDim[1]);
     }
   }
+
+  fill(255);
+  rect(850,50,100,50);
   textSize(12);
-  text("+",500,30);
-  text("-",550,30);
+  text("+",900,30);
+  text("-",950,30);
   stroke(190);
-  line(488,11,488,41);
-  line(538,11,538,41);
+  line(888,11,888,41);
+  line(938,11,938,41);
 }
 
 function drawStat(){
@@ -136,12 +139,12 @@ function drawStat(){
     const latitude = Number(row[0]);
     const longitude =  Number(row[1]);
     const pos = myMap.latLngToPixel(latitude, longitude);
-    rect(pos.x,pos.y-43,80,40);
+    rect(pos.x,pos.y-43,60,40);
     fill(0);
     textSize(15);
-    text("Score: ",pos.x+2,pos.y-33);
+    text("Score: ",pos.x+2,pos.y-31);
     textSize(30);
-    text(row[2],pos.x+2,pos.y-27);
+    text(row[2],pos.x+2,pos.y-20);
     //text("Temp: ",pos.x+2,pos.y-20);
     //text("Temp: ",pos.x+2,pos.y-17);
     //text("Wind: ",pos.x+2,pos.y-9);
