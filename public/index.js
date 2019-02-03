@@ -319,14 +319,7 @@ function loadPoints(){
   var returns = request(44.801794, -92.940902)
   console.log(returns);
 
-  fData = loadStrings(returns);
 
-  fData = new Array(ftbl.length);
-  for(x in ftbl){
-    fData[x] = splitTokens(ftbl[x], ',');
-  }
-
-  console.log(fdata[0]);
 
   document.getElementById("message-div").value = "Yeeet";
 
