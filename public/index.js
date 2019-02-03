@@ -275,7 +275,7 @@ function setColors(){
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
       if(col<255){
-        col*=1.8;
+        col*=2.1;
       }
       if(col>255){
         col = 255;
@@ -327,6 +327,8 @@ function loadPoints(){
   }
 
   console.log(fdata[0]);
+
+  document.getElementById("message-div").value = "Yeeet";
 
   loaded = 1;
 }
