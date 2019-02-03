@@ -8,8 +8,6 @@ var fData;
 var ftbl
 var loaded;
 
-var test;
-
 var matrix;
 var matX;
 var matY;
@@ -23,8 +21,6 @@ var colorVal;
 var col;
 
 var oppacity;
-
-var thisScore;
 
 var mark;
 
@@ -292,7 +288,7 @@ function setColors(){
 function request(lat,lon){
   let theUrl=`https://farmsim2k19.herokuapp.com/score?lat=${lat}&lon=${lon}`
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+  xmlHttp.open( "GET", theUrl, false );
   xmlHttp.send( null );
   return xmlHttp.responseText;
 }
@@ -322,6 +318,15 @@ function mouseClicked() {
 function loadPoints(){
   var returns = request(44.801794, -92.940902)
   console.log(returns);
+
+  fData = loadStrings(returns);
+
+  fData = new Array(ftbl.length);
+  for(x in ftbl){
+    fData[x] = splitTokens(ftbl[x], ',');
+  }
+
+  console.log(fdata[0]);
 
   loaded = 1;
 }
