@@ -167,7 +167,7 @@ class tile{
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        totalDistance = totalDistance + (abs(pos.x-this.xPos)+abs(pos.y-this.yPos));
+        totalDistance = totalDistance + sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2));
 
       }
 
@@ -181,7 +181,7 @@ class tile{
         const latitude = Number(row[0]);
         const longitude = Number(row[1]);
         const pos = myMap.latLngToPixel(latitude, longitude);
-        plemColor = plemColor + (((abs(pos.x-this.xPos)+abs(pos.y-this.yPos))/totalDistance)*row[2]);
+        plemColor = plemColor + (( sqrt(pow(abs(pos.x-this.xPos),2)+ pow(abs(pos.y-this.yPos),2)) /totalDistance)*row[2]);
       }
 
       this.pColor=plemColor;
