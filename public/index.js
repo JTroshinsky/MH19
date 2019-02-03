@@ -81,7 +81,7 @@ function drawPoints(){
     for(var y= 0; y<row.length; y++){
       fill(204, 101, 192, 127);
       stroke(127, 63, 120);
-      rect(xPos,yPos,10,10);
+      rect(row[y].xPos,row[y].yPos,10,10);
     }
   }
 }
