@@ -79,7 +79,8 @@ function drawPoints(){
     row = matrix[x];
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      fill(150);
+      fill(204, 101, 192, 127);
+      stroke(127, 63, 120);
       rect(xPos,yPos,10,10);
     }
   }
