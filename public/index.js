@@ -169,7 +169,7 @@ class tile{
         totalDistance = totalDistance + (abs(pos.x-this.xPos)+abs(pos.y-this.yPos));
 
       }
-      
+
       this.colorValue=0;
       var plemColor = 0;
 
@@ -211,7 +211,7 @@ function setColors(){
   for (var x = 0; x<matrix.lenght;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      col=row[y].plemColor*(255/max);
+      col=row[y].pColor*(255/max);
       row[y].setColor();
     }
   }
