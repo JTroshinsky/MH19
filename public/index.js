@@ -80,7 +80,7 @@ function drawPoints(){
     for(var y= 0; y<row.length; y++){
 
       fill(150);
-      rect(row[y].xPos,row[y].yPos,(dim[0]/20)*row[y].x,(dim[1]/40)*row[y].y);
+      rect(row[y].xPos,row[y].yPos,20,20);
     }
   }
   const pos3 = myMap.latLngToPixel(origin[0], origin[1]);
