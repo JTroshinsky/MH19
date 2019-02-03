@@ -4,9 +4,19 @@ var data;
 var tbl;
 var plot;
 
-var matrix
+var matrix;
 var matX;
 var matY;
+
+var origin = new Array(2);
+var dim = new Array(2);
+
+var colorValues(7);
+var totalMatrixDist;
+var totalColor;
+var colorVal;
+
+var step;
 
 var mark;
 
@@ -26,6 +36,13 @@ function setup(){
   for(x in tbl){
     data[x] = splitTokens(tbl[x], ',');
   }
+
+  origin[0] = 44.803748;
+  origin[1] = -92.944163;
+  dim[0] = (44.803748-44.790315);
+  dim[1] = (-92.944163+(-92.931893));
+
+  step=0;
 
   const options = {
     lat: 44.797520,
@@ -56,6 +73,17 @@ function drawPoints(){
       }
     }
   }
+
+  for (var x = 0; x<matrix.lenght;x++){
+    matrix[x] = new Array(40);
+    matX = x;
+    var row = matrix[x];
+    for(var y= 0; y<row.length; y++){
+      matY = y;
+      row[y] = new tile();
+    }
+  }
+
 }
 
 function drawStat(){
@@ -103,13 +131,87 @@ function mouseClicked() {
 }
 
 function genMatrix(){
-  for (var x =0; x<matrix.lenght;x++){
+  for (var x = 0; x<matrix.lenght;x++){
     matrix[x] = new Array(40);
     matX = x;
     var row = matrix[x];
-    for(var y=0; y<row.length; y++){
+    for(var y= 0; y<row.length; y++){
       matY = y;
+      row[y] = new tile();
+    }
+  }
 
+  setColors();
+}
+
+class tile(){
+  constructor(){
+      this.x = matX;
+      this.y = matY;
+
+      this.lat = origin[0]+(dim[0]/20*x)
+      this.long = origin[1]+(dim[1]/40*y)
+
+      const pos = myMap.latLngToPixel(latitude, longitude);
+
+      this.xPos = pos.x;
+      this.yPos = pos.y;
+
+      setPlemColor();
+  }
+
+  setPlemColor(){
+    var totalDistance = 0;
+    for(x in data){
+      var row = data[x];
+
+      const latitude = Number(row[0]);
+      const longitude = Number(row[1]);
+      const pos = myMap.latLngToPixel(latitude, longitude);
+      totalDistance = totalDistance + (abs(pos.x-xPos)+abs(pos.y-yPos));
+
+    }
+
+    var plemColor = 0;
+
+    for(x in data){
+      var row = data[x];
+
+      const latitude = Number(row[0]);
+      const longitude = Number(row[1]);
+      const pos = myMap.latLngToPixel(latitude, longitude);
+      plemColor = plemColor + ((totalDistance/(abs(pos.x-xPos)+abs(pos.y-yPos)))*row[2]);
+    }
+
+    this.pColor=plemColor;
+  }
+
+  setColor(){
+    this.colorValue = colorVal;
+  }
+}
+
+function setColors(){
+  var max= -1000;
+  var min= 1000000000000000;
+  var tempColor=0;
+
+  for (var x = 0; x<matrix.lenght;x++){
+    var row = matrix[x];
+    for(var y= 0; y<row.length; y++){
+      if(row[y].plemColor>max){
+        max = row[y].plemColor;
+      }
+      if(row[y].plemColor<min){
+        min = row[y].plemColor;
+      }
+    }
+  }
+
+  for (var x = 0; x<matrix.lenght;x++){
+    var row = matrix[x];
+    for(var y= 0; y<row.length; y++){
+      row[y].setColor(row[y].plemColor*(255/max));
     }
   }
 }
