@@ -75,7 +75,7 @@ function drawPoints(){
   genMatrix();
 
   //drawHeatMap();
-  for (var x = 0; x<matrix.lenght;x++){
+  for (var x = 0; x<matrix.length;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       fill(150);
