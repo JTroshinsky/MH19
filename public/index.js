@@ -302,7 +302,7 @@ function setColors(){
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
       if(col<255){
-        col*=1.4;
+        col*=1.8;
       }
       if(col>255){
         col = 255;
