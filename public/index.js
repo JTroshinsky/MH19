@@ -151,6 +151,7 @@ function mouseClicked() {
       if(oppacity>25){
         oppacity-=25;
       }
+    }
   }
   drawStat();
 }
