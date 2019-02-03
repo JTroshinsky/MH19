@@ -4,7 +4,9 @@ var data;
 var tbl;
 var plot;
 
-var yy;
+var fData;
+var ftbl
+var loaded;
 
 var matrix;
 var matX;
@@ -28,7 +30,7 @@ var myMap;
 function preload(){
   tbl= loadStrings('farmData.txt');
   mark = loadImage('/img/mark.png');
-  yy=0;
+  loaded = 0;
 }
 
 function setup(){
@@ -57,11 +59,6 @@ function setup(){
   myMap.overlay(myCanvas);
   myMap.onChange(drawPoints);
 }
-
-  yy++;
-  if(yy%10==0){
-    console.log(mouseX+" "+mouseY);
-  }
 
 function drawPoints(){
   clear();
@@ -99,12 +96,17 @@ function drawPoints(){
       rect(row[y].xPos,row[y].yPos,tileDim[0],tileDim[1]);
     }
   }
+
+  fill(255);
+  rect(890,10,100,35);
   textSize(12);
-  text("+",500,30);
-  text("-",550,30);
+  fill(0);
+  stroke(0);
+  text("+",910,30);
+  text("-",960,30);
   stroke(190);
-  line(488,11,488,41);
-  line(538,11,538,41);
+  line(888,11,888,41);
+  line(938,11,938,41);
 }
 
 function drawStat(){
@@ -136,35 +138,13 @@ function drawStat(){
     const latitude = Number(row[0]);
     const longitude =  Number(row[1]);
     const pos = myMap.latLngToPixel(latitude, longitude);
-    rect(pos.x,pos.y-43,80,40);
+    rect(pos.x,pos.y-43,60,40);
     fill(0);
     textSize(15);
-    text("Score: ",pos.x+2,pos.y-33);
+    text("Score: ",pos.x+2,pos.y-31);
     textSize(30);
-    text(row[2],pos.x+2,pos.y-27);
-    //text("Temp: ",pos.x+2,pos.y-20);
-    //text("Temp: ",pos.x+2,pos.y-17);
-    //text("Wind: ",pos.x+2,pos.y-9);
-    //text("Preasure: ",pos.x+2,pos.y-1);
+    text(row[2],pos.x+4,pos.y-5);
   }
-}
-
-function mouseClicked() {
-  if(mouseY>11 && mouseY<41){
-    if(mouseX>488 && mouseX<538){
-      if(oppacity<220){
-        oppacity+=25;
-        drawPoints
-      }
-    }
-    else if(mouseX>538 && mouseX<590){
-      if(oppacity>25){
-        oppacity-=25;
-        drawPoints
-      }
-    }
-  }
-  drawStat();
 }
 
 function genMatrix(){
@@ -237,10 +217,8 @@ class tile{
             plemColor = plemColor + (totalDistance/(abs(pos.x-this.xPos)+abs(pos.y-this.yPos))*row[2]);
         }
       }
-
       this.pColor=plemColor;
   }
-
 
   setColor(){
     this.colorValue = col;
@@ -297,7 +275,7 @@ function setColors(){
     for(var y= 0; y<row.length; y++){
       col=row[y].pColor*(255/maxVal);
       if(col<255){
-        col*=1.4;
+        col*=1.8;
       }
       if(col>255){
         col = 255;
@@ -305,4 +283,50 @@ function setColors(){
       row[y].setColor();
     }
   }
+}
+
+function request(lat,lon){
+  let theUrl=`https://farmsim2k19.herokuapp.com/score?lat=${lat}&lon=${lon}`
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false );
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
+}
+
+function mouseClicked() {
+  if(mouseY>11 && mouseY<41){
+    if(mouseX>488 && mouseX<938){
+      if(oppacity<220){
+        oppacity+=25;
+        drawPoints();
+      }
+    }
+    else if(mouseX>938 && mouseX<990){
+      if(oppacity>25){
+        oppacity-=25;
+        drawPoints();
+      }
+    }
+  }
+  drawStat();
+
+  if(loaded<1){
+    loadPoints();
+  }
+}
+
+function loadPoints(){
+  var returns = request(44.801794, -92.940902)
+  console.log(returns);
+
+  fData = loadStrings(returns);
+
+  fData = new Array(ftbl.length);
+  for(x in ftbl){
+    fData[x] = splitTokens(ftbl[x], ',');
+  }
+
+  console.log(fdata[0]);
+
+  loaded = 1;
 }
