@@ -2,67 +2,27 @@
 
 <html>
 	<head>
+        <meta charset="utf-8" />
 		<title>Farming Simulator 2019</title>
+  		<link rel="icon" href="img/ticon.png">
+	
+        <style>
+            body {
+                margin: 0px;
+                overflow: hidden;
+            }
 
-		<head>
-  		<link rel="icon" href="images/MH/ticon.png">
-		</head>
-
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+            #background-img {
+                position:absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
 	</head>
 	<body>
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-                <img src="images/MH/trac.png" alt="" style="border:0">
-						</div>
-
-						<div>
-							<title> Canvas Resize </title>
-							<style type="text/css">
-								canvas{
-									border: 1px solid black;
-								}
-							</style>
-
-							<div id="farmMap"></div>
-
-						</div>
-
-					</header>
-
-
-				<!-- Footer --->
-					<footer id="footer">
-						<!--<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>-->
-					</footer>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-			<script src="assets\js\p5\p5.js"></script>
-			<script src="assets\js\mappa.js"></script>
-			<script src="assets\js\grafica.min.js"></script>
-
-			<script src="assets\js\plots.js"></script>
-			<script src="assets\js\MH.js"></script>
-
+        <img src="img/farm.jpg" id="background-img"></img>
 	</body>
+
+    <script src="index.js"></script>
 </html>
