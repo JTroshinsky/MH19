@@ -314,9 +314,7 @@ function request(lat,lon){
 }
 
 function loadPoints(){
-    test = loadStrings(request(44.801794, -92.940902));
-
-
+    test = request(44.801794, -92.940902);
 
     console.log(test);
 }
