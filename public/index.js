@@ -80,7 +80,7 @@ function drawPoints(){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
       console.log(row[y].colorValue);
-      fill(150);
+      fill(row[y].colorValue);
       rect(row[y].xPos,row[y].yPos,20,20);
     }
   }
