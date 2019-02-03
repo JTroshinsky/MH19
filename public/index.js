@@ -83,6 +83,8 @@ function drawPoints(){
       rect(row[y].xPos,row[y].yPos,50,50);
     }
   }
+  const pos = myMap.latLngToPixel(origin[0], origin.y);
+  rect(pos.x,pos.y);
 }
 
 function drawStat(){
