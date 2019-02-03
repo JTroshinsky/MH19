@@ -3,11 +3,11 @@ var app = express();
 var path = require('path');
 
 //Static resources
-//app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 //GET method route
 app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, '/index.html'));
+	res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 //Launch server
