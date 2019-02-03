@@ -200,11 +200,11 @@ function setColors(){
   for (var x = 0; x<matrix.lenght;x++){
     var row = matrix[x];
     for(var y= 0; y<row.length; y++){
-      if(row[y].plemColor>max){
-        max = row[y].plemColor;
+      if(row[y].pColor>max){
+        max = row[y].pColor;
       }
-      if(row[y].plemColor<min){
-        min = row[y].plemColor;
+      if(row[y].pColor<min){
+        min = row[y].pColor;
       }
     }
   }
