@@ -198,7 +198,12 @@ class tile{
         distance = sqrt(pow(abs(pos.x-this.xPos),2)+pow(abs(pos.y-this.yPos),2));
         if(distance<avg){
             plemColor = plemColor + (totalDistance/(abs(pos.x-this.xPos)+abs(pos.y-this.yPos))*row[2]);
-        }        
+        }
+      }
+
+      plemColor*=1.5;
+      if(plemColor>255){
+        plemColor=255;
       }
 
       this.pColor=plemColor;
