@@ -159,34 +159,32 @@ class tile{
       this.xPos = pos.x;
       this.yPos = pos.y;
 
-      setPlemColor();
+
+      var totalDistance = 0;
+      for(x in data){
+        var row = data[x];
+
+        const latitude = Number(row[0]);
+        const longitude = Number(row[1]);
+        const pos = myMap.latLngToPixel(latitude, longitude);
+        totalDistance = totalDistance + (abs(pos.x-xPos)+abs(pos.y-yPos));
+
+      }
+
+      var plemColor = 0;
+
+      for(x in data){
+        var row = data[x];
+
+        const latitude = Number(row[0]);
+        const longitude = Number(row[1]);
+        const pos = myMap.latLngToPixel(latitude, longitude);
+        plemColor = plemColor + ((totalDistance/(abs(pos.x-xPos)+abs(pos.y-yPos)))*row[2]);
+      }
+
+      this.pColor=plemColor;
   }
 
-  setPlemColor(){
-    var totalDistance = 0;
-    for(x in data){
-      var row = data[x];
-
-      const latitude = Number(row[0]);
-      const longitude = Number(row[1]);
-      const pos = myMap.latLngToPixel(latitude, longitude);
-      totalDistance = totalDistance + (abs(pos.x-xPos)+abs(pos.y-yPos));
-
-    }
-
-    var plemColor = 0;
-
-    for(x in data){
-      var row = data[x];
-
-      const latitude = Number(row[0]);
-      const longitude = Number(row[1]);
-      const pos = myMap.latLngToPixel(latitude, longitude);
-      plemColor = plemColor + ((totalDistance/(abs(pos.x-xPos)+abs(pos.y-yPos)))*row[2]);
-    }
-
-    this.pColor=plemColor;
-  }
 
   setColor(){
     this.colorValue = colorVal;
