@@ -30,7 +30,7 @@ var myMap;
 function preload(){
   tbl= loadStrings('farmPoints.txt');
   mark = loadImage('/img/mark.png');
-  test = loadStrings(request(44.801794, -92.940902));
+
 }
 
 function setup(){
@@ -42,6 +42,9 @@ function setup(){
     data[x] = splitTokens(tbl[x], ',');
   }
 
+
+  test = loadStrings(request(44.801794, -92.940902));
+  
   var points = new Array(test.length);
   for(x in test){
     points[x] = splitTokens(test[x], ',');
