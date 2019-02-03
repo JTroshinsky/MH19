@@ -34,7 +34,7 @@ function setup(){
     data[x] = splitTokens(tbl[x], ',');
   }
 
-  genMatrix();
+  //genMatrix();
 
   myMap = mappa.tileMap(options);
   myMap.overlay(myCanvas);
@@ -124,7 +124,5 @@ class tile(){
     this.y = matY;
   }
 
-  display(){
 
-  }
 }
