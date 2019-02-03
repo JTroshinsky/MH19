@@ -171,6 +171,7 @@ class tile{
       }
 
       this.colorValue=0;
+      this.pColor=0;
       var plemColor = 0;
 
       for(x in data){
